@@ -1,0 +1,20 @@
+<% all_organisations.each do |organisation_type, organisations| %>
+
+<div class="row pb-4">
+  <div class="col-xs-12 col-md-4">
+    <h2><%= organisation_type.to_s.humanize %></h2>
+    <div class="display-2"><%= organisations.count %></div>
+  </div>       
+  <div class="col-xs-12 col-md-8">
+    <ol class="list-unstyled">
+      <% organisations.each do |organisation| %>
+        <%= content_tag :li, {
+          id: organisation["slug"],
+        } do %>
+          <%= link_to(organisation["title"], organisation["href"]) %>
+        <% end %>      
+      <% end %>       
+    </ol>
+  </div>        
+</div>  
+<% end %>

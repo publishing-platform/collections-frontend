@@ -5,7 +5,7 @@
       <% if content_for?(:title) %>
         <%= yield :title %> - Publishing Platform
       <% else %>
-        <%= @content_item.page_title %> - Publishing Platform
+        <%= @content_item.title %> - Publishing Platform
       <% end %>
     </title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -24,15 +24,13 @@
         </div>   
       </header>
     
-      <main>         
-        <div class="row">
-          <div class="col-xs-12 col-md-8">
-            <%= yield %>
-          </div>          
-        </div>              
+      <main>     
+        <% if yield(:breadcrumbs).present? %>
+          <%= yield(:breadcrumbs) %>
+        <% end %>    
+        <%= yield %>            
       </main>
     </div>  
     <%= javascript_include_tag "application" %>      
   </body>
 </html>
-

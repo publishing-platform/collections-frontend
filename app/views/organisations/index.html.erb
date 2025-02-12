@@ -1,0 +1,15 @@
+<% content_for :title, @presented_organisations.title %>
+
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+    <div class="pb-md-4">
+      <h1><%= @presented_organisations.title %></h1>  
+    </div>  
+  </div>          
+</div>  
+
+<div class="organisations" id="search_results" role="region" aria-label="List of departments and other organisations">
+  <%= render partial: 'organisations_list', locals: {
+    all_organisations: @presented_organisations.all_organisations
+  } %>
+</div>

@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
 
 private
 
+  def content_item
+    @content_item ||= ContentItem.find!(request.path)
+  end
+
   def set_expiry(duration = 5.minutes, public_cache: true)
     unless Rails.env.development?
       expires_in(duration, public: public_cache)
@@ -28,5 +32,9 @@ private
   def error(status_code, exception = nil)
     PublishingPlatformError.notify(exception) if exception
     render status: status_code, plain: "#{status_code} error"
+  end
+
+  def setup_content_item_and_navigation_helpers(model)
+    @content_item = model.content_item.to_hash
   end
 end
