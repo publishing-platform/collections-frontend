@@ -5,7 +5,9 @@ gem "rails", "~> 8.0.1"
 gem "bootsnap", require: false
 gem "jbuilder"
 gem "jsbundling-rails"
+gem "publishing_platform_api_adapters"
 gem "publishing_platform_app_config"
+gem "publishing_platform_location"
 gem "puma", ">= 5.0"
 gem "sassc-rails"
 gem "sprockets-rails"
@@ -21,4 +23,8 @@ end
 
 group :development do
   gem "web-console"
+end
+
+group :test do
+  gem "simplecov"
 end
