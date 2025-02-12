@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
   before_action :set_expiry
 
+  rescue_from PublishingPlatformApi::ContentStore::ItemNotFound, with: :error_404
+  rescue_from PublishingPlatformApi::HTTPForbidden, with: :error_403
+
 private
 
   def content_item
