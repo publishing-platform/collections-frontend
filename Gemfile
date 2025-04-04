@@ -19,6 +19,7 @@ group :development, :test do
   gem "debug", platforms: %i[mri windows], require: "debug/prelude"
   gem "publishing_platform_rubocop"
   gem "rspec-rails"
+  gem "webmock", require: false
 end
 
 group :development do
