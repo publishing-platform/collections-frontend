@@ -380,7 +380,6 @@ DEPENDENCIES
   publishing_platform_rubocop
   publishing_platform_schemas
   publishing_platform_test
-  puma (>= 5.0)
   rails (~> 8.0.1)
   rspec-rails
   sassc-rails
