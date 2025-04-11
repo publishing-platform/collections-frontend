@@ -18,6 +18,8 @@ group :development, :test do
   gem "brakeman", require: false
   gem "debug", platforms: %i[mri windows], require: "debug/prelude"
   gem "publishing_platform_rubocop"
+  gem "publishing_platform_schemas"
+  gem "publishing_platform_test"
   gem "rspec-rails"
   gem "webmock", require: false
 end
