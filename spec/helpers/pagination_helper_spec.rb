@@ -13,9 +13,9 @@ RSpec.describe PaginationHelper do
           "slug": "digital-services",
           "abbreviation": "DS",
           "status": "live",
-          "content_id": "af07d5a5-df63-4ddc-9383-6a666845ebe9"
-        }
-      }
+          "content_id": "af07d5a5-df63-4ddc-9383-6a666845ebe9",
+        },
+      },
     ]
   end
   let(:current_page) { 1 }
