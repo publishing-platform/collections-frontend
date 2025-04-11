@@ -1,5 +1,14 @@
 <% content_for :title, @presented_organisations.title %>
 
+<% content_for :breadcrumbs do %>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Organisations</li>
+    </ol>
+  </nav>
+<% end %>
+
 <div class="row">
   <div class="col-xs-12 col-md-8">
     <div class="pb-md-4">
