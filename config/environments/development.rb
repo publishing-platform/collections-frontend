@@ -54,6 +54,7 @@ Rails.application.configure do
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
+  config.assets.digest = false
 
   # Allow requests for all domains e.g. <app>.dev.publishing-platform.co.uk
   config.hosts.clear
