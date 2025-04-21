@@ -3,12 +3,12 @@ source "https://rubygems.org"
 gem "rails", "~> 8.0.1"
 
 gem "bootsnap", require: false
+gem "dartsass-rails"
 gem "jbuilder"
 gem "jsbundling-rails"
 gem "publishing_platform_api_adapters"
 gem "publishing_platform_app_config"
 gem "publishing_platform_location"
-gem "sassc-rails"
 gem "sprockets-rails"
 gem "terser"
 gem "tzinfo-data", platforms: %i[windows jruby]
