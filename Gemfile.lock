@@ -373,7 +373,6 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
-  brakeman
   dartsass-rails
   debug
   jbuilder
