@@ -14,6 +14,7 @@ require "publishing_platform_test"
 PublishingPlatformTest.configure
 
 require "publishing_platform_api/test_helpers/content_store"
+require "publishing_platform_api/test_helpers/search"
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -63,7 +64,9 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.include OrganisationsApiHelpers
+  config.include SearchApiHelpers
   config.include PublishingPlatformApi::TestHelpers::ContentStore, type: ->(spec) { spec.in?(%i[system request]) }
+  config.include PublishingPlatformApi::TestHelpers::Search, type: ->(spec) { spec.in?(%i[system request]) }
 
   config.before(:each, type: :system) do
     driven_by :headless_chrome
