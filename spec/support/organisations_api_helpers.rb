@@ -8,6 +8,15 @@ module OrganisationsApiHelpers
     }
   end
 
+  def organisation_params(slug:)
+    {
+      filter_document_type: "organisation",
+      filter_slug: slug,
+      count: "1",
+      start: "0",
+    }
+  end
+
   def search_api_organisations_results
     {
       results: [digital_services, financial_services],
@@ -20,6 +29,22 @@ module OrganisationsApiHelpers
     {
       results: [],
       total: 1000,
+      start: 0,
+    }.deep_stringify_keys
+  end
+
+  def search_api_organisation_results
+    {
+      results: [digital_services],
+      total: 1,
+      start: 0,
+    }.deep_stringify_keys
+  end
+
+  def search_api_organisation_no_results
+    {
+      results: [],
+      total: 0,
       start: 0,
     }.deep_stringify_keys
   end

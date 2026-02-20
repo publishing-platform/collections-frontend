@@ -41,4 +41,47 @@ RSpec.describe "/api/organisations", type: :request do
       expect(response.headers["Link"]).to eq(link)
     end
   end
+
+  describe "GET /show" do
+    before do
+      digital_services = organisation_params(slug: "digital-services")
+      stub_search(params: digital_services, body: search_api_organisation_results)
+
+      something_else = organisation_params(slug: "something-else")
+      stub_search(params: something_else, body: search_api_organisation_no_results)
+    end
+
+    it "renders JSON" do
+      get api_organisation_path(organisation_name: "digital-services")
+      expect(response.status).to eq(200)
+
+      body = JSON.parse(response.body)
+      expect(body["title"]).to eq("Digital Services")
+    end
+
+    it "does not paginate the results" do
+      get api_organisation_path(organisation_name: "digital-services")
+      body = JSON.parse(response.body)
+
+      expect(body["current_page"]).to be_nil
+    end
+
+    it "sets the Link HTTP header" do
+      get api_organisation_path(organisation_name: "digital-services")
+      link = "<http://www.example.com/api/organisations/digital-services>; rel=\"self\""
+      expect(response.headers["Link"]).to eq(link)
+    end
+
+    it "adds _response_info" do
+      get api_organisation_path(organisation_name: "digital-services")
+      body = JSON.parse(response.body)
+
+      expect(body["_response_info"]["status"]).to eq("ok")
+    end
+
+    it "renders a 404 error if the organisation is not found" do
+      get api_organisation_path(organisation_name: "something-else")
+      expect(response).to have_http_status(:not_found)
+    end
+  end
 end
