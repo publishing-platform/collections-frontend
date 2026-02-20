@@ -9,18 +9,17 @@ class OrganisationsApiController < ApplicationController
     end
   end
 
-  # TODO: uncomment once search api implemented
-  # def show
-  #   presented_organisation = presented_organisation(slug: params[:organisation_name])
-  #   set_link_header(links: presented_organisation[:_response_info][:links])
-  #   respond_to do |f|
-  #     f.json do
-  #       render json: presented_organisation
-  #     end
-  #   end
-  # rescue OrganisationNotFound
-  #   error_404
-  # end
+  def show
+    presented_organisation = presented_organisation(slug: params[:organisation_name])
+    set_link_header(links: presented_organisation[:_response_info][:links])
+    respond_to do |f|
+      f.json do
+        render json: presented_organisation
+      end
+    end
+  rescue OrganisationNotFound
+    error_404
+  end
 
 private
 
@@ -40,7 +39,7 @@ private
   def presented_organisation(slug:)
     organisation = organisation_from_search(slug:)
 
-    raise OrganisationNotFound if organisation[:total].zero?
+    raise OrganisationNotFound if organisation["total"].zero?
 
     OrganisationsApiPresenter.new(
       organisation["results"],
@@ -65,7 +64,7 @@ private
 
   def organisation_from_search(slug:)
     params = {
-      filter_format: "organisation",
+      filter_document_type: "organisation",
       filter_slug: slug,
       count: 1,
       start: 0,
