@@ -29,10 +29,10 @@ private
   def presented_organisations(start:)
     organisations = organisations_from_search(count: RESULTS_PER_PAGE, start:)
     OrganisationsApiPresenter.new(
-      organisations[:results],
+      organisations["results"],
       current_page:,
       results_per_page: RESULTS_PER_PAGE,
-      total_results: organisations[:total],
+      total_results: organisations["total"],
       current_url_without_parameters:,
     ).present
   end
@@ -43,7 +43,7 @@ private
     raise OrganisationNotFound if organisation[:total].zero?
 
     OrganisationsApiPresenter.new(
-      organisation[:results],
+      organisation["results"],
       current_page: 1,
       results_per_page: 1,
       total_results: 1,
@@ -54,7 +54,7 @@ private
 
   def organisations_from_search(count:, start:)
     params = {
-      filter_format: "organisation",
+      filter_document_type: "organisation",
       order: "title",
       count:,
       start:,

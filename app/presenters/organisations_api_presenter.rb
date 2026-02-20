@@ -25,18 +25,17 @@ class OrganisationsApiPresenter
 
   def present
     o = organisations.map do |organisation|
-      organisation = organisation[:organisations][0]
       {
-        id: api_url_from_slug(organisation[:slug]),
-        title: organisation[:title].gsub("Closed organisation: ", ""),
-        format: organisation_type_name(organisation[:organisation_type]),
-        updated_at: organisation[:public_timestamp],
-        web_url: web_url_from_slug(organisation[:slug]),
+        id: api_url_from_slug(organisation["slug"]),
+        title: organisation["title"].gsub("Closed organisation: ", ""),
+        format: organisation_type_name(organisation["organisation_type"]),
+        updated_at: organisation["public_timestamp"],
+        web_url: web_url_from_slug(organisation["slug"]),
         details: {
-          slug: organisation[:slug],
-          abbreviation: organisation[:abbreviation],
-          status: organisation[:status],
-          content_id: organisation[:content_id],
+          slug: organisation["slug"],
+          abbreviation: organisation["organisation_abbreviation"],
+          status: organisation["organisation_status"],
+          content_id: organisation["content_id"],
         },
       }
     end
@@ -52,16 +51,5 @@ private
 
   def web_url_from_slug(slug)
     "#{PublishingPlatformLocation.new.website_root}#{Rails.application.routes.url_helpers.organisation_path(organisation_name: slug)}"
-  end
-
-  def summary_organisations(organisation, type)
-    return [] if organisation[type].nil?
-
-    organisation[type].map do |slug|
-      {
-        id: api_url_from_slug(slug),
-        web_url: web_url_from_slug(slug),
-      }
-    end
   end
 end
