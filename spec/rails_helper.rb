@@ -13,6 +13,10 @@ WebMock.disable_net_connect!(allow_localhost: true)
 require "publishing_platform_test"
 PublishingPlatformTest.configure
 
+# use javascript driver for all feature tests (default is rack_test)
+# javascript driver is assigned in publishing_platform_test to :headless_chrome
+Capybara.default_driver = Capybara.javascript_driver
+
 require "publishing_platform_api/test_helpers/content_store"
 require "publishing_platform_api/test_helpers/search"
 
@@ -65,10 +69,6 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.include OrganisationsApiHelpers
   config.include SearchApiHelpers
-  config.include PublishingPlatformApi::TestHelpers::ContentStore, type: ->(spec) { spec.in?(%i[system request]) }
-  config.include PublishingPlatformApi::TestHelpers::Search, type: ->(spec) { spec.in?(%i[system request]) }
-
-  config.before(:each, type: :system) do
-    driven_by :headless_chrome
-  end
+  config.include PublishingPlatformApi::TestHelpers::ContentStore, type: ->(spec) { spec.in?(%i[feature request]) }
+  config.include PublishingPlatformApi::TestHelpers::Search, type: ->(spec) { spec.in?(%i[feature request]) }
 end
