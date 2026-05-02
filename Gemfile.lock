@@ -175,7 +175,7 @@ GEM
       net-protocol
     netrc (0.11.0)
     nio4r (2.7.5)
-    nokogiri (1.19.2-x86_64-linux-gnu)
+    nokogiri (1.19.3-x86_64-linux-gnu)
       racc (~> 1.4)
     null_logger (0.0.1)
     parallel (1.28.0)
@@ -217,7 +217,7 @@ GEM
       rubocop-rspec (= 3.9.0)
     publishing_platform_schemas (0.5.1)
       json-schema (>= 2.8, < 6.2)
-    publishing_platform_test (0.2.1)
+    publishing_platform_test (0.2.2)
       brakeman (>= 5.0.2)
       capybara (>= 3.36)
       puma
@@ -329,7 +329,7 @@ GEM
     sass-embedded (1.86.3-x86_64-linux-gnu)
       google-protobuf (~> 4.30)
     securerandom (0.4.1)
-    selenium-webdriver (4.41.0)
+    selenium-webdriver (4.43.0)
       base64 (~> 0.2)
       logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
